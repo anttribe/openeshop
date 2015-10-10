@@ -3,6 +3,20 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>openeshop</groupId>
 	<artifactId>openeshop</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>${project.version}</version>
 	<packaging>pom</packaging>
+
+	<modules>
+		<module>openeshop-infra</module>
+		<module>openeshop-user</module>
+		<module>openeshop-good</module>
+		<module>openeshop-order</module>
+		<module>openeshop-console</module>
+		<module>openeshop-web</module>
+	</modules>
+
+	<properties>
+		<project.version>0.0.1-SNAPSHOT</project.version>
+	</properties>
+
 </project>
