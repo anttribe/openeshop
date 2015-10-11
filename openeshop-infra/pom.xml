@@ -22,6 +22,18 @@
 			<artifactId>commons-collections</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>commons-configuration</groupId>
+			<artifactId>commons-configuration</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.dayatang.dddlib</groupId>
+			<artifactId>dddlib-domain</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.dayatang.dddlib</groupId>
+			<artifactId>dddlib-ioc-spring</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.dayatang.dddlib</groupId>
 			<artifactId>dddlib-domain</artifactId>
 		</dependency>
@@ -32,6 +44,36 @@
 		<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis-spring</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 </project>

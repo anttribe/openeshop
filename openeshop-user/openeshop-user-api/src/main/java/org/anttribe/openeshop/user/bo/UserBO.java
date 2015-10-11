@@ -1,5 +1,5 @@
 /*
- * 文  件   名: UserBO.java
+ * 文  件   名: UserBo.java
  * 版         本 : (Anttribe) openeshop-user-api All rights reserved
  * 描         述 : <描述>
  * 修   改  人: zhaoyong
@@ -13,7 +13,7 @@ import java.sql.Timestamp;
  * @author zhaoyong
  * @version 2015年10月10日
  */
-public class UserBO
+public class UserBo
 {
     /**
      * 用户编号: 唯一

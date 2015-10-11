@@ -7,10 +7,20 @@
  */
 package org.anttribe.openeshop.user.intf;
 
+import org.anttribe.openeshop.user.bo.SigninBo;
+import org.anttribe.openeshop.user.bo.UserBo;
+
 /**
  * @author zhaoyong
  * @version 2015年10月10日
  */
 public interface IUserService
 {
+    /**
+     * 用户登录
+     * 
+     * @param signinBo SigninBo
+     * @return UserBo
+     */
+    UserBo userSignin(SigninBo signinBo);
 }

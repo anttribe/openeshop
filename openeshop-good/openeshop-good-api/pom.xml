@@ -4,19 +4,13 @@
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>openeshop</groupId>
-		<artifactId>openeshop</artifactId>
+		<groupId>openeshop-good</groupId>
+		<artifactId>openeshop-good</artifactId>
 		<version>${project.version}</version>
 	</parent>
-	<groupId>openeshop-good</groupId>
-	<artifactId>openeshop-good</artifactId>
-	<name>openeshop-good</name>
-	<packaging>pom</packaging>
-
-	<modules>
-		<module>openeshop-good-api</module>
-		<module>openeshop-good-server</module>
-	</modules>
+	<groupId>openeshop-good-api</groupId>
+	<artifactId>openeshop-good-api</artifactId>
+	<name>openeshop-good-api</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
