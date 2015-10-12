@@ -7,6 +7,7 @@
  */
 package org.anttribe.openeshop.good.domain;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,6 +36,16 @@ public class Category extends MybatisAbstractEntity
     private int weight;
     
     /**
+     * 创建时间
+     */
+    private Date createTime;
+    
+    /**
+     * 数据更新时间
+     */
+    private Date updateTime;
+    
+    /**
      * 父分类
      */
     private Category parent;
@@ -48,7 +59,7 @@ public class Category extends MybatisAbstractEntity
     public static List<Category> listByParent(String parent)
     {
         String statement =
-            (new StringBuilder()).append(Category.class.getCanonicalName()).append(".queryByParent").toString();
+            (new StringBuilder()).append(Category.class.getCanonicalName()).append(".queryByCriteria").toString();
         Map<String, Object> criteria = new HashMap<String, Object>();
         criteria.put("parent", parent);
         return getSqlSessionTemplate().selectList(statement, criteria);
@@ -92,5 +103,25 @@ public class Category extends MybatisAbstractEntity
     public void setParent(Category parent)
     {
         this.parent = parent;
+    }
+    
+    public Date getCreateTime()
+    {
+        return createTime;
+    }
+    
+    public void setCreateTime(Date createTime)
+    {
+        this.createTime = createTime;
+    }
+    
+    public Date getUpdateTime()
+    {
+        return updateTime;
+    }
+    
+    public void setUpdateTime(Date updateTime)
+    {
+        this.updateTime = updateTime;
     }
 }

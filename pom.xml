@@ -18,6 +18,9 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.version>0.0.1-SNAPSHOT</project.version>
+		<slf4j.version>1.7.7</slf4j.version>
+		<dubbo.version>2.0.13</dubbo.version>
+		<zookeeper.version>3.3.6</zookeeper.version>
 		<dddlib.version>4.3.6</dddlib.version>
 		<mybatis.version>3.2.7</mybatis.version>
 		<mybatis-spring.version>1.2.2</mybatis-spring.version>
@@ -78,6 +81,17 @@
 			</dependency>
 
 			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-log4j12</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+
+			<dependency>
 				<groupId>org.dayatang.dddlib</groupId>
 				<artifactId>dddlib-domain</artifactId>
 				<version>${dddlib.version}</version>
@@ -102,6 +116,25 @@
 				<artifactId>mybatis-spring</artifactId>
 				<version>${mybatis-spring.version}</version>
 			</dependency>
+
+			<!-- dubbo -->
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>dubbo</artifactId>
+				<version>${dubbo.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.zookeeper</groupId>
+				<artifactId>zookeeper</artifactId>
+				<version>${zookeeper.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>log4j</groupId>
+						<artifactId>log4j</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-web</artifactId>
