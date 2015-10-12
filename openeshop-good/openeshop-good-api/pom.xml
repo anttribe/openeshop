@@ -4,11 +4,10 @@
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>openeshop-good</groupId>
+		<groupId>org.anttribe.openeshop.openeshop-good</groupId>
 		<artifactId>openeshop-good</artifactId>
 		<version>${project.version}</version>
 	</parent>
-	<groupId>openeshop-good-api</groupId>
 	<artifactId>openeshop-good-api</artifactId>
 	<name>openeshop-good-api</name>
 

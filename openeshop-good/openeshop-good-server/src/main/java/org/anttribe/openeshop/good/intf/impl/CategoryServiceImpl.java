@@ -14,10 +14,13 @@ import org.anttribe.openeshop.good.bo.CategoryBo;
 import org.anttribe.openeshop.good.domain.Category;
 import org.anttribe.openeshop.good.intf.ICategoryService;
 
+import com.alibaba.dubbo.config.annotation.Service;
+
 /**
  * @author zhaoyong
  * @version 2015年10月11日
  */
+@Service
 public class CategoryServiceImpl implements ICategoryService
 {
     

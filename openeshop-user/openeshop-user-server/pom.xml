@@ -4,11 +4,10 @@
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>openeshop-user</groupId>
+		<groupId>org.anttribe.openeshop.openeshop-user</groupId>
 		<artifactId>openeshop-user</artifactId>
 		<version>${project.version}</version>
 	</parent>
-	<groupId>openeshop-user-server</groupId>
 	<artifactId>openeshop-user-server</artifactId>
 	<name>openeshop-user-server</name>
 
@@ -18,12 +17,12 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>openeshop-infra</groupId>
+			<groupId>org.anttribe.openeshop.openeshop-infra</groupId>
 			<artifactId>openeshop-infra</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>openeshop-user-api</groupId>
+			<groupId>org.anttribe.openeshop.openeshop-user</groupId>
 			<artifactId>openeshop-user-api</artifactId>
 			<version>${project.version}</version>
 		</dependency>

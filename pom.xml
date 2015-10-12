@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>openeshop</groupId>
+	<groupId>org.anttribe.openeshop</groupId>
 	<artifactId>openeshop</artifactId>
 	<version>${project.version}</version>
 	<packaging>pom</packaging>
@@ -13,13 +13,14 @@
 		<module>openeshop-order</module>
 		<module>openeshop-console</module>
 		<module>openeshop-web</module>
+		<module>openeshop-restapi</module>
 	</modules>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.version>0.0.1-SNAPSHOT</project.version>
 		<slf4j.version>1.7.7</slf4j.version>
-		<dubbo.version>2.0.13</dubbo.version>
+		<dubbo.version>2.5.3</dubbo.version>
 		<zookeeper.version>3.3.6</zookeeper.version>
 		<dddlib.version>4.3.6</dddlib.version>
 		<mybatis.version>3.2.7</mybatis.version>
@@ -122,6 +123,12 @@
 				<groupId>com.alibaba</groupId>
 				<artifactId>dubbo</artifactId>
 				<version>${dubbo.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring</artifactId>
+					</exclusion>
+				</exclusions>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.zookeeper</groupId>
