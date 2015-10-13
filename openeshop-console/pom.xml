@@ -8,8 +8,15 @@
 		<artifactId>openeshop</artifactId>
 		<version>${project.version}</version>
 	</parent>
+	<groupId>org.anttribe.openeshop.openeshop-console</groupId>
 	<artifactId>openeshop-console</artifactId>
 	<name>openeshop-console</name>
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>openeshop-console-facade</module>
+		<module>openeshop-console-web</module>
+	</modules>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -17,4 +24,5 @@
 
 	<dependencies>
 	</dependencies>
+
 </project>

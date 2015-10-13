@@ -4,26 +4,26 @@
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>org.anttribe.openeshop.openeshop-user</groupId>
-		<artifactId>openeshop-user</artifactId>
+		<groupId>org.anttribe.openeshop.openeshop-console</groupId>
+		<artifactId>openeshop-console</artifactId>
 		<version>${project.version}</version>
 	</parent>
-	<artifactId>openeshop-user-server</artifactId>
-	<name>openeshop-user-server</name>
+	<artifactId>openeshop-console-web</artifactId>
+	<name>openeshop-console-web</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-
+	
 	<dependencies>
-		<dependency>
+	    <dependency>
 			<groupId>org.anttribe.openeshop.openeshop-infra</groupId>
 			<artifactId>openeshop-infra-common</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.anttribe.openeshop.openeshop-user</groupId>
-			<artifactId>openeshop-user-api</artifactId>
+			<groupId>org.anttribe.openeshop.openeshop-console</groupId>
+			<artifactId>openeshop-console-facade</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 	</dependencies>
