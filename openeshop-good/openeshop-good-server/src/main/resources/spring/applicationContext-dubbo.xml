@@ -11,9 +11,5 @@
 	<dubbo:registry protocol="zookeeper" address="127.0.0.1:2181" />
 	<dubbo:protocol name="dubbo" port="20880" />
 	<dubbo:provider timeout="10000" />
-
-	<context:component-scan base-package="org.anttribe.openeshop.good">
-		<context:include-filter type="annotation"
-			expression="com.alibaba.dubbo.config.annotation.Service" />
-	</context:component-scan>
+	<dubbo:annotation package="org.anttribe.openeshop.good" />
 </beans>
