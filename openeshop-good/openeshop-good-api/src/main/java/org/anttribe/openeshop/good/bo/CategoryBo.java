@@ -35,6 +35,11 @@ public class CategoryBo implements Serializable
      */
     private int weight;
     
+    /**
+     * 父分类
+     */
+    private CategoryBo parent;
+    
     public String getId()
     {
         return id;
@@ -63,5 +68,15 @@ public class CategoryBo implements Serializable
     public void setWeight(int weight)
     {
         this.weight = weight;
+    }
+    
+    public CategoryBo getParent()
+    {
+        return parent;
+    }
+    
+    public void setParent(CategoryBo parent)
+    {
+        this.parent = parent;
     }
 }

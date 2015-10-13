@@ -10,11 +10,35 @@
 	</parent>
 	<artifactId>openeshop-console-facade</artifactId>
 	<name>openeshop-console-facade</name>
-	
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-	
+
 	<dependencies>
+		<!-- dubbo -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>dubbo</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.zookeeper</groupId>
+			<artifactId>zookeeper</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.github.sgroschupf</groupId>
+			<artifactId>zkclient</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.anttribe.openeshop.openeshop-infra</groupId>
+			<artifactId>openeshop-infra-common</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.anttribe.openeshop.openeshop-good</groupId>
+			<artifactId>openeshop-good-api</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 	</dependencies>
 </project>
