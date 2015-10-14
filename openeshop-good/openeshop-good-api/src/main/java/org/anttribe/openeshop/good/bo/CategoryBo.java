@@ -31,9 +31,9 @@ public class CategoryBo implements Serializable
     private String name;
     
     /**
-     * 权重
+     * 序号
      */
-    private int weight;
+    private int ordinal;
     
     /**
      * 父分类
@@ -60,14 +60,14 @@ public class CategoryBo implements Serializable
         this.name = name;
     }
     
-    public int getWeight()
+    public int getOrdinal()
     {
-        return weight;
+        return ordinal;
     }
     
-    public void setWeight(int weight)
+    public void setOrdinal(int ordinal)
     {
-        this.weight = weight;
+        this.ordinal = ordinal;
     }
     
     public CategoryBo getParent()

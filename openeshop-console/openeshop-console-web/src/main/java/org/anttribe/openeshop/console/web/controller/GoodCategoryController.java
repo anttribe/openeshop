@@ -40,6 +40,6 @@ public class GoodCategoryController
         List<CategoryBo> categories = categoryFacade.listCategories(categoryDTO);
         mv.addObject("categories", categories);
         mv.setViewName("/good/category/list");
-        return null;
+        return mv;
     }
 }

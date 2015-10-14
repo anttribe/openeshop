@@ -5,7 +5,7 @@
 	<resultMap id="Category-resultMap" type="org.anttribe.openeshop.good.domain.Category">
 		<result property="id" column="id" />
 		<result property="name" column="name" />
-		<result property="weight" column="weight" />
+		<result property="ordinal" column="ordinal" />
 		<result property="createTime" column="create_time" />
 		<result property="updateTime" column="update_time" />
 	</resultMap>
@@ -46,12 +46,12 @@
 	<select id="queryByCriteria" resultMap="Category-resultMap"
 		parameterType="map">
 		<![CDATA[
-		    SELECT id, name, weight, parent_id, create_time, update_time 
-		    FROM oes_good_t_category t
+		    SELECT id, name, ordinal, parent_id, create_time, update_time 
+		    FROM oes_good_t_category_info t
 		]]>
 		<include refid="where" />
 		<![CDATA[
-		    ORDER BY create_time desc, update_time
+		    ORDER BY ordinal, create_time desc, update_time
 		]]>
 	</select>
 

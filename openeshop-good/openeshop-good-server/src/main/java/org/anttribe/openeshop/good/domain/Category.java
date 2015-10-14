@@ -31,9 +31,9 @@ public class Category extends MybatisAbstractEntity
     private String name;
     
     /**
-     * 权重
+     * 序号
      */
-    private int weight;
+    private int ordinal;
     
     /**
      * 创建时间
@@ -85,14 +85,14 @@ public class Category extends MybatisAbstractEntity
         this.name = name;
     }
     
-    public int getWeight()
+    public int getOrdinal()
     {
-        return weight;
+        return ordinal;
     }
     
-    public void setWeight(int weight)
+    public void setOrdinal(int ordinal)
     {
-        this.weight = weight;
+        this.ordinal = ordinal;
     }
     
     public Category getParent()
