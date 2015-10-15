@@ -5,11 +5,10 @@
 <html lang="en_US">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title><spring:message code="app.appname" /></title>
+        <title>sitemeth - <sitemesh:write property='title'/></title>
+        <sitemesh:write property='head'/>
     </head>
     <body>
-        <div class="container">
-            Category
-        </div>
+        <sitemesh:write property='body'/>
     </body>
 </html>
