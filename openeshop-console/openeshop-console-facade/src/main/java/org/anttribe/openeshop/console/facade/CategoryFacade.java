@@ -10,7 +10,7 @@ package org.anttribe.openeshop.console.facade;
 import java.util.List;
 
 import org.anttribe.openeshop.console.facade.dto.CategoryDTO;
-import org.anttribe.openeshop.good.bo.CategoryBo;
+import org.anttribe.openeshop.product.bo.CategoryBo;
 
 /**
  * @author zhaoyong

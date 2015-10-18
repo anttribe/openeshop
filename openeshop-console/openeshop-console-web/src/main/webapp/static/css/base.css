@@ -96,6 +96,3 @@ legend { color:#000; }
 /* width & height */
 .w240 { width: 240px; }
 .w320 { width: 320px; }
-
-.sa-container { margin: 0; }
-.sa-container .row { margin-left: -15px; margin-right: 0; }

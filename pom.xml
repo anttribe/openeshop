@@ -9,7 +9,7 @@
 	<modules>
 		<module>openeshop-infra</module>
 		<module>openeshop-user</module>
-		<module>openeshop-good</module>
+		<module>openeshop-product</module>
 		<module>openeshop-order</module>
 		<module>openeshop-console</module>
 		<module>openeshop-web</module>
@@ -192,12 +192,6 @@
 				<groupId>org.glassfish.web</groupId>
 				<artifactId>jstl-impl</artifactId>
 				<version>1.2</version>
-				<exclusions>
-					<exclusion>
-						<groupId>javax.servlet.jsp</groupId>
-						<artifactId>jsp-api</artifactId>
-					</exclusion>
-				</exclusions>
 			</dependency>
 
 			<dependency>

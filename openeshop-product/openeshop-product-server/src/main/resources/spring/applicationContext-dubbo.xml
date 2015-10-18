@@ -6,10 +6,10 @@
        http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-	<dubbo:application name="openeshop-console" />
+	<dubbo:application name="openeshop-product" />
 	<!--zookeeper注册中心 -->
 	<dubbo:registry protocol="zookeeper" address="127.0.0.1:2181" />
-	<dubbo:protocol name="dubbo" port="20881" />
-	<dubbo:annotation package="org.anttribe.openeshop.console" />
-	<dubbo:consumer check="false" />
+	<dubbo:protocol name="dubbo" port="20880" />
+	<dubbo:provider timeout="10000" />
+	<dubbo:annotation package="org.anttribe.openeshop.product" />
 </beans>

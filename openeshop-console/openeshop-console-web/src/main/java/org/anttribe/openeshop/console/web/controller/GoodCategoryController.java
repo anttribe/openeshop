@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.anttribe.openeshop.console.facade.CategoryFacade;
 import org.anttribe.openeshop.console.facade.dto.CategoryDTO;
-import org.anttribe.openeshop.good.bo.CategoryBo;
+import org.anttribe.openeshop.product.bo.CategoryBo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -39,7 +39,7 @@ public class GoodCategoryController
         ModelAndView mv = new ModelAndView();
         List<CategoryBo> categories = categoryFacade.listCategories(categoryDTO);
         mv.addObject("categories", categories);
-        mv.setViewName("/good/category/list");
+        mv.setViewName("/product/category/list");
         return mv;
     }
 }

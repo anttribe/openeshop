@@ -11,8 +11,8 @@ import java.util.List;
 
 import org.anttribe.openeshop.console.facade.CategoryFacade;
 import org.anttribe.openeshop.console.facade.dto.CategoryDTO;
-import org.anttribe.openeshop.good.bo.CategoryBo;
-import org.anttribe.openeshop.good.intf.ICategoryService;
+import org.anttribe.openeshop.product.bo.CategoryBo;
+import org.anttribe.openeshop.product.intf.ICategoryService;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.dubbo.config.annotation.Reference;
