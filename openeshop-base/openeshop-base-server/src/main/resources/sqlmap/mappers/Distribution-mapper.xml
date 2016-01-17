@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.anttribe.openeshop.base.domain.Distribution">
+	<cache readOnly="true" />
+	<resultMap id="Distribution-resultMap" type="org.anttribe.openeshop.base.domain.Distribution">
+		<result property="id" column="id" />
+		<result property="name" column="name" />
+		<result property="code" column="code" />
+		<result property="icon" column="icon" />
+		<result property="config" column="config" />
+		<result property="enabled" column="enabled" />
+	</resultMap>
+	
+	<!-- select -->
+	<sql id="select">
+        <![CDATA[
+            SELECT t.id, t.name, t.code, t.icon, t.config, t.enabled
+              FROM t_distribution_info t
+        ]]>
+	</sql>
+
+	<!-- where -->
+	<sql id="where">
+		<where>
+		    <if test="null != id and id != ''">
+				AND t.id = #{id}
+			</if>
+		    <if test="null != name and name != ''">
+				AND t.name = #{name}
+			</if>
+		    <if test="null != code and code != ''">
+				AND t.code = #{code}
+			</if>
+		    <if test="null != icon and icon != ''">
+				AND t.icon = #{icon}
+			</if>
+		    <if test="null != config and config != ''">
+				AND t.config = #{config}
+			</if>
+		    <if test="null != enabled and enabled != ''">
+				AND t.enabled = #{enabled}
+			</if>
+		</where>
+	</sql>
+	
+	<!-- orderBy -->
+	<sql id="orderBy">
+	    <![CDATA[]]>
+	</sql>
+	
+	<!-- limit -->
+	<sql id="limit">
+	    <if test="null != pagination">
+			limit #{pagination.offset}, #{pagination.pagesize}
+		</if>
+	</sql>
+	
+	<!-- insert: 插入单条数据 -->
+	<insert id="insert" parameterType="org.anttribe.openeshop.base.domain.Distribution">
+		<selectKey keyProperty="id" resultType="Long" order="AFTER">
+		    <![CDATA[ SELECT LAST_INSERT_ID() ]]>
+		</selectKey>
+		<![CDATA[
+		    INSERT INTO t_distribution_info(name, code, icon, config, enabled)
+		        VALUES(#{name}, #{code}, #{icon}, #{config}, #{enabled})
+		]]>
+	</insert>
+	
+	<!-- batchInsert: 批量插入数据 -->
+	<insert id="batchInsert" parameterType="java.util.List">
+		<![CDATA[
+		    INSERT INTO t_distribution_info(id, name, code, icon, config, enabled)
+		        VALUES
+		]]>
+		<foreach collection="list" item="item" open="(" close=")" separator=", ">
+			#{id}, 
+			#{name}, 
+			#{code}, 
+			#{icon}, 
+			#{config}, 
+			#{enabled}
+		</foreach>
+	</insert>
+
+	<!-- update: 更新单条数据 -->
+	<update id="update" parameterType="org.anttribe.openeshop.base.domain.Distribution">
+        <![CDATA[
+            UPDATE t_distribution_info t
+        ]]>
+		<set>
+		    <if test="null != name and name != ''">
+				t.name = #{name}
+			</if>
+		    <if test="null != code and code != ''">
+				t.code = #{code}
+			</if>
+		    <if test="null != icon and icon != ''">
+				t.icon = #{icon}
+			</if>
+		    <if test="null != config and config != ''">
+				t.config = #{config}
+			</if>
+		    <if test="null != enabled and enabled != ''">
+				t.enabled = #{enabled}
+			</if>
+		</set>
+		<include refid="where"></include>
+	</update>
+	
+	<!-- batchUpdate: 批量更新数据 -->
+	<update id="batchUpdate" parameterType="java.util.List">
+		<![CDATA[
+            UPDATE t_distribution_info t
+        ]]>
+		<trim prefix="set" suffixOverrides=",">
+			<trim prefix="name = case id" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="null != name and name != ''">
+                        when #{item.id} then #{name}
+                    </if>
+                </foreach>
+            </trim>
+			<trim prefix="code = case id" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="null != code and code != ''">
+                        when #{item.id} then #{code}
+                    </if>
+                </foreach>
+            </trim>
+			<trim prefix="icon = case id" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="null != icon and icon != ''">
+                        when #{item.id} then #{icon}
+                    </if>
+                </foreach>
+            </trim>
+			<trim prefix="config = case id" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="null != config and config != ''">
+                        when #{item.id} then #{config}
+                    </if>
+                </foreach>
+            </trim>
+			<trim prefix="enabled = case id" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="null != enabled and enabled != ''">
+                        when #{item.id} then #{enabled}
+                    </if>
+                </foreach>
+            </trim>
+        </trim>
+		<![CDATA[
+            WHERE id IN 
+        ]]>
+        <foreach collection="list" separator=", " item="item" open="(" close=")">
+            #{item.id}
+        </foreach>
+	</update>
+
+	<!-- delete: 删除单条数据 -->
+	<delete id="delete" parameterType="org.anttribe.openeshop.base.domain.Distribution">
+	    <![CDATA[
+            DELETE FROM t_distribution_info t
+        ]]>
+		<include refid="where"></include>
+	</delete>
+	
+	<!-- queryAll: 查询所有数据 -->
+	<select id="queryAll" resultMap="Distribution-resultMap">
+		<include refid="select"></include>
+		<include refid="orderBy"></include>
+	</select>
+
+	<!-- queryById: 根据id查询单条数据 -->
+	<select id="queryById" resultMap="Distribution-resultMap">
+		<include refid="select"></include>
+		<include refid="where"></include>
+	</select>
+
+	<!-- queryByCriteria: 根据条件查询数据 -->
+	<select id="queryByCriteria" resultMap="Distribution-resultMap"
+		parameterType="Map">
+		<include refid="select"></include>
+		<include refid="where"></include>
+		<include refid="orderBy"></include>
+	</select>
+	
+	<!-- queryDataCount: 根据条件查询数据条数 -->
+	<select id="queryDataCount" resultMap="int" parameterType="Map">
+		<![CDATA[
+            SELECT COUNT(1)
+              FROM t_distribution_info t
+        ]]>
+		<include refid="where"></include>
+	</select>
+	
+	<!-- queryByPagination: 根据分页条件查询数据 -->
+	<select id="queryByPagination" resultMap="Distribution-resultMap"
+		parameterType="Map">
+		<include refid="select"></include>
+		<include refid="where"></include>
+		<include refid="orderBy"></include>
+		<include refid="limit"></include>
+	</select>
+	
+</mapper>

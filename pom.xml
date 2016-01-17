@@ -8,10 +8,13 @@
 
 	<modules>
 		<module>openeshop-infra</module>
+		<module>openeshop-base</module>
 		<module>openeshop-user</module>
+		<module>openeshop-shop</module>
 		<module>openeshop-product</module>
 		<module>openeshop-order</module>
 		<module>openeshop-console</module>
+		<module>openeshop-merchant</module>
 		<module>openeshop-web</module>
 		<module>openeshop-restapi</module>
 	</modules>
