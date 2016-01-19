@@ -54,6 +54,11 @@ public class DistributionBo implements Serializable
      */
     private List<ConfigItemBo> configs;
     
+    /**
+     * 是否可用
+     */
+    private String enabled;
+    
     public Long getId()
     {
         return id;
@@ -112,6 +117,16 @@ public class DistributionBo implements Serializable
     public void setConfigs(List<ConfigItemBo> configs)
     {
         this.configs = configs;
+    }
+    
+    public String getEnabled()
+    {
+        return enabled;
+    }
+    
+    public void setEnabled(String enabled)
+    {
+        this.enabled = enabled;
     }
     
 }

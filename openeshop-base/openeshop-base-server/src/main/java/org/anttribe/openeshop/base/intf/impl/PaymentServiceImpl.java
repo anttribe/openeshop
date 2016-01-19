@@ -28,7 +28,7 @@ import com.alibaba.dubbo.config.annotation.Service;
  * @author zhaoyong
  * @version 2016年1月13日
  */
-@Service
+@Service(version = "1.0")
 public class PaymentServiceImpl implements IPaymentService
 {
     
@@ -52,7 +52,7 @@ public class PaymentServiceImpl implements IPaymentService
         // 参数校验
         if (null == payment)
         {
-            logger.warn("persistenting category to DB, param category is null.");
+            logger.warn("persistenting payment to DB, param payment is null.");
             throw new UnifyException(SystemErrorNo.PARAMETER_IS_NULL);
         }
         if (StringUtils.isEmpty(payment.getName()) || StringUtils.isEmpty(payment.getCode()))
@@ -89,7 +89,7 @@ public class PaymentServiceImpl implements IPaymentService
         
         if (null == payment)
         {
-            logger.warn("persistenting category to DB, param category is null.");
+            logger.warn("deleting payment from DB, param payment is null.");
             throw new UnifyException(SystemErrorNo.PARAMETER_IS_NULL);
         }
         

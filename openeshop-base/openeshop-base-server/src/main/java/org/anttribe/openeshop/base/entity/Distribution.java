@@ -43,6 +43,11 @@ public class Distribution extends MybatisAbstractEntity
      */
     private String config;
     
+    /**
+     * 是否可用
+     */
+    private String enabled;
+    
     public Long getId()
     {
         return id;
@@ -91,6 +96,16 @@ public class Distribution extends MybatisAbstractEntity
     public void setConfig(String config)
     {
         this.config = config;
+    }
+    
+    public String getEnabled()
+    {
+        return enabled;
+    }
+    
+    public void setEnabled(String enabled)
+    {
+        this.enabled = enabled;
     }
     
 }
