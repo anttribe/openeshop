@@ -10,7 +10,7 @@ package org.anttribe.openeshop.base.intf;
 import java.util.List;
 import java.util.Map;
 
-import org.anttribe.openeshop.base.bo.DistributionBo;
+import org.anttribe.openeshop.base.domain.Distribution;
 
 /**
  * @author zhaoyong
@@ -24,20 +24,20 @@ public interface IDistributionService
      * @param criteria 查询条件
      * @return List<Distribution>
      */
-    List<DistributionBo> listDistributions(Map<String, Object> criteria);
+    List<Distribution> listDistributions(Map<String, Object> criteria);
     
     /**
      * 持久化数据
      * 
-     * @param distributionBo DistributionBo
+     * @param distribution Distribution
      */
-    void persistentDistribution(DistributionBo distributionBo);
+    void persistentDistribution(Distribution distribution);
     
     /**
      * 删除数据
      * 
-     * @param distributionBo DistributionBo
+     * @param distribution Distribution
      */
-    void deleteDistribution(DistributionBo distributionBo);
+    void deleteDistribution(Distribution distribution);
     
 }

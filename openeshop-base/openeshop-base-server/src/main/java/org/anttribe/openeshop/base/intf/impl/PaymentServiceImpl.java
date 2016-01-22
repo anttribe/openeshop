@@ -11,9 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.anttribe.openeshop.base.assembler.PaymentAssembler;
-import org.anttribe.openeshop.base.bo.PaymentBo;
-import org.anttribe.openeshop.base.entity.Payment;
+import org.anttribe.openeshop.base.domain.Payment;
 import org.anttribe.openeshop.base.intf.IPaymentService;
 import org.anttribe.openeshop.infra.errorno.SystemErrorNo;
 import org.anttribe.openeshop.infra.exception.UnifyException;
@@ -35,18 +33,19 @@ public class PaymentServiceImpl implements IPaymentService
     private static Logger logger = LoggerFactory.getLogger(PaymentServiceImpl.class);
     
     @Override
-    public List<PaymentBo> listPayments(Map<String, Object> criteria)
+    public List<Payment> listPayments(Map<String, Object> criteria)
     {
         logger.debug("list Payments by criteria[{}]", criteria);
-        
-        List<Payment> payments = Payment.find(Payment.class, criteria);
-        return PaymentAssembler.toBo(payments);
+        if (null == criteria)
+        {
+            criteria = new HashMap<String, Object>();
+        }
+        return Payment.find(Payment.class, criteria);
     }
     
     @Override
-    public void persistentPayment(PaymentBo paymentBo)
+    public void persistentPayment(Payment payment)
     {
-        Payment payment = PaymentAssembler.toEntity(paymentBo);
         logger.debug("persistenting Payment to DB, param: payment[{}]", payment);
         
         // 参数校验
@@ -82,9 +81,8 @@ public class PaymentServiceImpl implements IPaymentService
     }
     
     @Override
-    public void deletePayment(PaymentBo paymentBo)
+    public void deletePayment(Payment payment)
     {
-        Payment payment = PaymentAssembler.toEntity(paymentBo);
         logger.debug("deleting payment from DB, param: payment[{}]", payment);
         
         if (null == payment)

@@ -10,7 +10,7 @@ package org.anttribe.openeshop.base.intf;
 import java.util.List;
 import java.util.Map;
 
-import org.anttribe.openeshop.base.bo.PaymentBo;
+import org.anttribe.openeshop.base.domain.Payment;
 
 /**
  * @author zhaoyong
@@ -22,22 +22,22 @@ public interface IPaymentService
      * 根据条件查询支付方式
      * 
      * @param criteria 查询条件
-     * @return List<PaymentBo>
+     * @return List<Payment>
      */
-    List<PaymentBo> listPayments(Map<String, Object> criteria);
+    List<Payment> listPayments(Map<String, Object> criteria);
     
     /**
      * 持久化数据
      * 
-     * @param paymentBo PaymentBo
+     * @param payment Payment
      */
-    void persistentPayment(PaymentBo paymentBo);
+    void persistentPayment(Payment payment);
     
     /**
      * 删除数据
      * 
-     * @param paymentBo PaymentBo
+     * @param payment Payment
      */
-    void deletePayment(PaymentBo paymentBo);
+    void deletePayment(Payment payment);
     
 }

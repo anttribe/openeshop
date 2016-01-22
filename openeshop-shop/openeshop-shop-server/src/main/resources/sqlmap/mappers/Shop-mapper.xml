@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.anttribe.openeshop.shop.domain.Shop">
+	<cache readOnly="true" />
+	<resultMap id="Shop-resultMap" type="org.anttribe.openeshop.shop.domain.Shop">
+		<result property="id" column="id" />
+		<result property="name" column="name" />
+		<result property="avatar" column="avatar" />
+		<result property="phone" column="phone" />
+		<result property="grade" column="grade" />
+		<result property="notice" column="notice" />
+		<result property="category" column="category" />
+		<result property="address" column="address" />
+		<result property="latitude" column="latitude" />
+		<result property="longitude" column="longitude" />
+		<result property="location" column="location" />
+		<result property="merchant" column="merchant" />
+		<result property="status" column="status" />
+		<result property="type" column="type" />
+		<result property="startBusinessTime" column="start_business_time" />
+		<result property="endBusinessTime" column="end_business_time" />
+		<result property="createTime" column="create_time" />
+		<result property="updateTime" column="update_time" />
+	</resultMap>
+	
+	<!-- select -->
+	<sql id="select">
+        <![CDATA[
+            SELECT t.id, t.name, t.avatar, t.phone, t.grade, t.notice, t.category, t.address, t.latitude, t.longitude, t.location, t.merchant, t.status, t.type, t.start_business_time, t.end_business_time, t.create_time, t.update_time
+              FROM t_shop_info t
+        ]]>
+	</sql>
+
+	<!-- where -->
+	<sql id="where">
+		<where>
+		    <if test="null != id and id != ''">
+				AND t.id = #{id}
+			</if>
+		    <if test="null != name and name != ''">
+				AND t.name = #{name}
+			</if>
+		    <if test="null != avatar and avatar != ''">
+				AND t.avatar = #{avatar}
+			</if>
+		    <if test="null != phone and phone != ''">
+				AND t.phone = #{phone}
+			</if>
+		    <if test="null != grade and grade != ''">
+				AND t.grade = #{grade}
+			</if>
+		    <if test="null != notice and notice != ''">
+				AND t.notice = #{notice}
+			</if>
+		    <if test="null != category and category != ''">
+				AND t.category = #{category}
+			</if>
+		    <if test="null != address and address != ''">
+				AND t.address = #{address}
+			</if>
+		    <if test="null != latitude and latitude != ''">
+				AND t.latitude = #{latitude}
+			</if>
+		    <if test="null != longitude and longitude != ''">
+				AND t.longitude = #{longitude}
+			</if>
+		    <if test="null != location and location != ''">
+				AND t.location = #{location}
+			</if>
+		    <if test="null != merchant and merchant != ''">
+				AND t.merchant = #{merchant}
+			</if>
+		    <if test="null != status and status != ''">
+				AND t.status = #{status}
+			</if>
+		    <if test="null != type and type != ''">
+				AND t.type = #{type}
+			</if>
+		    <if test="null != startBusinessTime and startBusinessTime != ''">
+				AND t.start_business_time = #{startBusinessTime}
+			</if>
+		    <if test="null != endBusinessTime and endBusinessTime != ''">
+				AND t.end_business_time = #{endBusinessTime}
+			</if>
+		    <if test="null != createTime and createTime != ''">
+				AND t.create_time = #{createTime}
+			</if>
+		    <if test="null != updateTime and updateTime != ''">
+				AND t.update_time = #{updateTime}
+			</if>
+		</where>
+	</sql>
+	
+	<!-- orderBy -->
+	<sql id="orderBy">
+	    <![CDATA[]]>
+	</sql>
+	
+	<!-- limit -->
+	<sql id="limit">
+	    <if test="null != pagination">
+			limit #{pagination.offset}, #{pagination.pagesize}
+		</if>
+	</sql>
+	
+	<!-- insert: 插入单条数据 -->
+	<insert id="insert" parameterType="org.anttribe.openeshop.shop.domain.Shop">
+		<selectKey keyProperty="id" resultType="Long" order="AFTER">
+		    <![CDATA[ SELECT LAST_INSERT_ID() ]]>
+		</selectKey>
+		<![CDATA[
+		    INSERT INTO t_shop_info(name, avatar, phone, grade, notice, category, address, latitude, longitude, location, merchant, status, type, start_business_time, end_business_time, create_time, update_time)
+		        VALUES(#{name}, #{avatar}, #{phone}, #{grade}, #{notice}, #{category}, #{address}, #{latitude}, #{longitude}, #{location}, #{merchant}, #{status}, #{type}, #{startBusinessTime}, #{endBusinessTime}, #{createTime}, #{updateTime})
+		]]>
+	</insert>
+	
+	<!-- batchInsert: 批量插入数据 -->
+	<insert id="batchInsert" parameterType="java.util.List">
+		<![CDATA[
+		    INSERT INTO t_shop_info(id, name, avatar, phone, grade, notice, category, address, latitude, longitude, location, merchant, status, type, start_business_time, end_business_time, create_time, update_time)
+		        VALUES
+		]]>
+		<foreach collection="list" item="item" open="(" close=")" separator=", ">
+			#{id}, 
+			#{name}, 
+			#{avatar}, 
+			#{phone}, 
+			#{grade}, 
+			#{notice}, 
+			#{category}, 
+			#{address}, 
+			#{latitude}, 
+			#{longitude}, 
+			#{location}, 
+			#{merchant}, 
+			#{status}, 
+			#{type}, 
+			#{startBusinessTime}, 
+			#{endBusinessTime}, 
+			#{createTime}, 
+			#{updateTime}
+		</foreach>
+	</insert>
+
+	<!-- update: 更新单条数据 -->
+	<update id="update" parameterType="org.anttribe.openeshop.shop.domain.Shop">
+        <![CDATA[
+            UPDATE t_shop_info t
+        ]]>
+		<set>
+		    <if test="null != name and name != ''">
+				t.name = #{name}
+			</if>
+		    <if test="null != avatar and avatar != ''">
+				t.avatar = #{avatar}
+			</if>
+		    <if test="null != phone and phone != ''">
+				t.phone = #{phone}
+			</if>
+		    <if test="null != grade and grade != ''">
+				t.grade = #{grade}
+			</if>
+		    <if test="null != notice and notice != ''">
+				t.notice = #{notice}
+			</if>
+		    <if test="null != category and category != ''">
+				t.category = #{category}
+			</if>
+		    <if test="null != address and address != ''">
+				t.address = #{address}
+			</if>
+		    <if test="null != latitude and latitude != ''">
+				t.latitude = #{latitude}
+			</if>
+		    <if test="null != longitude and longitude != ''">
+				t.longitude = #{longitude}
+			</if>
+		    <if test="null != location and location != ''">
+				t.location = #{location}
+			</if>
+		    <if test="null != merchant and merchant != ''">
+				t.merchant = #{merchant}
+			</if>
+		    <if test="null != status and status != ''">
+				t.status = #{status}
+			</if>
+		    <if test="null != type and type != ''">
+				t.type = #{type}
+			</if>
+		    <if test="null != startBusinessTime and startBusinessTime != ''">
+				t.start_business_time = #{startBusinessTime}
+			</if>
+		    <if test="null != endBusinessTime and endBusinessTime != ''">
+				t.end_business_time = #{endBusinessTime}
+			</if>
+		    <if test="null != createTime and createTime != ''">
+				t.create_time = #{createTime}
+			</if>
+		    <if test="null != updateTime and updateTime != ''">
+				t.update_time = #{updateTime}
+			</if>
+		</set>
+		<include refid="where"></include>
+	</update>
+	
+	<!-- batchUpdate: 批量更新数据 -->
+	<update id="batchUpdate" parameterType="java.util.List">
+		<![CDATA[
+            UPDATE t_shop_info t
+        ]]>
+		<trim prefix="set" suffixOverrides=",">
+			<trim prefix="name = case id" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="null != name and name != ''">
+                        when #{item.id} then #{name}
+                    </if>
+                </foreach>
+            </trim>
+			<trim prefix="avatar = case id" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="null != avatar and avatar != ''">
+                        when #{item.id} then #{avatar}
+                    </if>
+                </foreach>
+            </trim>
+			<trim prefix="phone = case id" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="null != phone and phone != ''">
+                        when #{item.id} then #{phone}
+                    </if>
+                </foreach>
+            </trim>
+			<trim prefix="grade = case id" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="null != grade and grade != ''">
+                        when #{item.id} then #{grade}
+                    </if>
+                </foreach>
+            </trim>
+			<trim prefix="notice = case id" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="null != notice and notice != ''">
+                        when #{item.id} then #{notice}
+                    </if>
+                </foreach>
+            </trim>
+			<trim prefix="category = case id" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="null != category and category != ''">
+                        when #{item.id} then #{category}
+                    </if>
+                </foreach>
+            </trim>
+			<trim prefix="address = case id" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="null != address and address != ''">
+                        when #{item.id} then #{address}
+                    </if>
+                </foreach>
+            </trim>
+			<trim prefix="latitude = case id" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="null != latitude and latitude != ''">
+                        when #{item.id} then #{latitude}
+                    </if>
+                </foreach>
+            </trim>
+			<trim prefix="longitude = case id" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="null != longitude and longitude != ''">
+                        when #{item.id} then #{longitude}
+                    </if>
+                </foreach>
+            </trim>
+			<trim prefix="location = case id" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="null != location and location != ''">
+                        when #{item.id} then #{location}
+                    </if>
+                </foreach>
+            </trim>
+			<trim prefix="merchant = case id" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="null != merchant and merchant != ''">
+                        when #{item.id} then #{merchant}
+                    </if>
+                </foreach>
+            </trim>
+			<trim prefix="status = case id" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="null != status and status != ''">
+                        when #{item.id} then #{status}
+                    </if>
+                </foreach>
+            </trim>
+			<trim prefix="type = case id" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="null != type and type != ''">
+                        when #{item.id} then #{type}
+                    </if>
+                </foreach>
+            </trim>
+			<trim prefix="start_business_time = case id" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="null != startBusinessTime and startBusinessTime != ''">
+                        when #{item.id} then #{startBusinessTime}
+                    </if>
+                </foreach>
+            </trim>
+			<trim prefix="end_business_time = case id" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="null != endBusinessTime and endBusinessTime != ''">
+                        when #{item.id} then #{endBusinessTime}
+                    </if>
+                </foreach>
+            </trim>
+			<trim prefix="create_time = case id" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="null != createTime and createTime != ''">
+                        when #{item.id} then #{createTime}
+                    </if>
+                </foreach>
+            </trim>
+			<trim prefix="update_time = case id" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="null != updateTime and updateTime != ''">
+                        when #{item.id} then #{updateTime}
+                    </if>
+                </foreach>
+            </trim>
+        </trim>
+		<![CDATA[
+            WHERE id IN 
+        ]]>
+        <foreach collection="list" separator=", " item="item" open="(" close=")">
+            #{item.id}
+        </foreach>
+	</update>
+
+	<!-- delete: 删除单条数据 -->
+	<delete id="delete" parameterType="org.anttribe.openeshop.shop.domain.Shop">
+	    <![CDATA[
+            DELETE FROM t_shop_info t
+        ]]>
+		<include refid="where"></include>
+	</delete>
+	
+	<!-- queryAll: 查询所有数据 -->
+	<select id="queryAll" resultMap="Shop-resultMap">
+		<include refid="select"></include>
+		<include refid="orderBy"></include>
+	</select>
+
+	<!-- queryById: 根据id查询单条数据 -->
+	<select id="queryById" resultMap="Shop-resultMap">
+		<include refid="select"></include>
+		<include refid="where"></include>
+	</select>
+
+	<!-- queryByCriteria: 根据条件查询数据 -->
+	<select id="queryByCriteria" resultMap="Shop-resultMap"
+		parameterType="Map">
+		<include refid="select"></include>
+		<include refid="where"></include>
+		<include refid="orderBy"></include>
+	</select>
+	
+	<!-- queryDataCount: 根据条件查询数据条数 -->
+	<select id="queryDataCount" resultMap="int" parameterType="Map">
+		<![CDATA[
+            SELECT COUNT(1)
+              FROM t_shop_info t
+        ]]>
+		<include refid="where"></include>
+	</select>
+	
+	<!-- queryByPagination: 根据分页条件查询数据 -->
+	<select id="queryByPagination" resultMap="Shop-resultMap"
+		parameterType="Map">
+		<include refid="select"></include>
+		<include refid="where"></include>
+		<include refid="orderBy"></include>
+		<include refid="limit"></include>
+	</select>
+	
+</mapper>

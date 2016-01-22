@@ -11,10 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.anttribe.openeshop.base.assembler.DistributionAssembler;
-import org.anttribe.openeshop.base.bo.DistributionBo;
-import org.anttribe.openeshop.base.entity.Distribution;
-import org.anttribe.openeshop.base.entity.Payment;
+import org.anttribe.openeshop.base.domain.Distribution;
 import org.anttribe.openeshop.base.intf.IDistributionService;
 import org.anttribe.openeshop.infra.errorno.SystemErrorNo;
 import org.anttribe.openeshop.infra.exception.UnifyException;
@@ -36,7 +33,7 @@ public class DistributionServiceImpl implements IDistributionService
     private static Logger logger = LoggerFactory.getLogger(DistributionServiceImpl.class);
     
     @Override
-    public List<DistributionBo> listDistributions(Map<String, Object> criteria)
+    public List<Distribution> listDistributions(Map<String, Object> criteria)
     {
         logger.debug("listing Distributions refer to criteria, param: [{}]", criteria);
         
@@ -44,14 +41,12 @@ public class DistributionServiceImpl implements IDistributionService
         {
             criteria = new HashMap<String, Object>();
         }
-        List<Distribution> distributions = Distribution.find(Distribution.class, criteria);
-        return DistributionAssembler.toBo(distributions);
+        return Distribution.find(Distribution.class, criteria);
     }
     
     @Override
-    public void persistentDistribution(DistributionBo distributionBo)
+    public void persistentDistribution(Distribution distribution)
     {
-        Distribution distribution = DistributionAssembler.toEntity(distributionBo);
         logger.debug("persistenting Distribution to DB, distribution: payment[{}]", distribution);
         
         // 参数校验
@@ -76,8 +71,8 @@ public class DistributionServiceImpl implements IDistributionService
         
         Map<String, Object> criteria = new HashMap<String, Object>();
         criteria.put("id", distribution.getId());
-        List<Payment> tempPayments = Payment.find(Payment.class, criteria);
-        if (CollectionUtils.isEmpty(tempPayments))
+        List<Distribution> tempDistributions = Distribution.find(Distribution.class, criteria);
+        if (CollectionUtils.isEmpty(tempDistributions))
         {
             distribution.save();
             logger.debug("distribution not exist in DB, then save new distribution to DB, distribution: {}",
@@ -89,9 +84,8 @@ public class DistributionServiceImpl implements IDistributionService
     }
     
     @Override
-    public void deleteDistribution(DistributionBo distributionBo)
+    public void deleteDistribution(Distribution distribution)
     {
-        Distribution distribution = DistributionAssembler.toEntity(distributionBo);
         logger.debug("deleting distribution from DB, param: distribution[{}]", distribution);
         
         if (null == distribution)

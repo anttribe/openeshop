@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.anttribe.openeshop.base.entity.Payment">
+<mapper namespace="org.anttribe.openeshop.base.domain.Payment">
 	<cache readOnly="true" />
-	<resultMap id="Payment-resultMap" type="org.anttribe.openeshop.base.entity.Payment">
+	<resultMap id="Payment-resultMap" type="org.anttribe.openeshop.base.domain.Payment">
 		<result property="id" column="id" />
 		<result property="name" column="name" />
 		<result property="code" column="code" />
@@ -50,7 +50,7 @@
 	</sql>
 
 	<!-- insert: 插入单条数据 -->
-	<insert id="insert" parameterType="org.anttribe.openeshop.base.entity.Payment">
+	<insert id="insert" parameterType="org.anttribe.openeshop.base.domain.Payment">
 		<selectKey keyProperty="id" resultType="Long" order="AFTER">
 		    <![CDATA[ SELECT LAST_INSERT_ID() ]]>
 		</selectKey>
@@ -72,7 +72,7 @@
 	</insert>
 
 	<!-- update: 更新单条数据 -->
-	<update id="update" parameterType="org.anttribe.openeshop.base.entity.Payment">
+	<update id="update" parameterType="org.anttribe.openeshop.base.domain.Payment">
         <![CDATA[
             UPDATE t_payment_info t
         ]]>
@@ -148,7 +148,7 @@
 	</update>
 
 	<!-- delete: 删除单条数据 -->
-	<delete id="delete" parameterType="org.anttribe.openeshop.base.entity.Payment">
+	<delete id="delete" parameterType="org.anttribe.openeshop.base.domain.Payment">
 	    <![CDATA[
             DELETE FROM t_payment_info t
         ]]>

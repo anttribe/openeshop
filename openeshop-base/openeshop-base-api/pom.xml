@@ -16,5 +16,10 @@
 	</properties>
 
 	<dependencies>
+		<dependency>
+			<groupId>org.anttribe.openeshop.openeshop-infra</groupId>
+			<artifactId>openeshop-infra-common</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 	</dependencies>
 </project>
