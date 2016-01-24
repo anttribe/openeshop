@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.anttribe.openeshop.base.domain.Distribution;
-import org.anttribe.openeshop.base.intf.IDistributionService;
+import org.anttribe.openeshop.base.intf.DistributionService;
 import org.anttribe.openeshop.infra.errorno.SystemErrorNo;
 import org.anttribe.openeshop.infra.exception.UnifyException;
 import org.apache.commons.collections.CollectionUtils;
@@ -27,7 +27,7 @@ import com.alibaba.dubbo.config.annotation.Service;
  * @version 2016年1月13日
  */
 @Service(version = "1.0")
-public class DistributionServiceImpl implements IDistributionService
+public class DistributionServiceImpl implements DistributionService
 {
     
     private static Logger logger = LoggerFactory.getLogger(DistributionServiceImpl.class);

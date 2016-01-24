@@ -29,14 +29,14 @@ public class ConfigItem implements Serializable
     private String name;
     
     /**
-     * key, 唯一
-     */
-    private String key;
-    
-    /**
      * 配置值
      */
     private String value;
+    
+    /**
+     * key, 唯一
+     */
+    private String title;
     
     /**
      * 默认值
@@ -63,16 +63,6 @@ public class ConfigItem implements Serializable
         this.name = name;
     }
     
-    public String getKey()
-    {
-        return key;
-    }
-    
-    public void setKey(String key)
-    {
-        this.key = key;
-    }
-    
     public String getValue()
     {
         return value;
@@ -81,6 +71,16 @@ public class ConfigItem implements Serializable
     public void setValue(String value)
     {
         this.value = value;
+    }
+    
+    public String getTitle()
+    {
+        return title;
+    }
+    
+    public void setTitle(String title)
+    {
+        this.title = title;
     }
     
     public List<ConfigItem> getConf()

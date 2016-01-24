@@ -36,6 +36,13 @@
 			<artifactId>openeshop-infra-common</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.anttribe.openeshop.openeshop-base</groupId>
+			<artifactId>openeshop-base-api</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.anttribe.openeshop.openeshop-console</groupId>
 			<artifactId>openeshop-console-facade</artifactId>
@@ -56,6 +63,11 @@
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>

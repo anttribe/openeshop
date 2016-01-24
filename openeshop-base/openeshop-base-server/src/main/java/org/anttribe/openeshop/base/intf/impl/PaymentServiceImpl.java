@@ -12,7 +12,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.anttribe.openeshop.base.domain.Payment;
-import org.anttribe.openeshop.base.intf.IPaymentService;
+import org.anttribe.openeshop.base.intf.PaymentService;
+import org.anttribe.openeshop.infra.constants.Keys;
+import org.anttribe.openeshop.infra.domain.Pagination;
 import org.anttribe.openeshop.infra.errorno.SystemErrorNo;
 import org.anttribe.openeshop.infra.exception.UnifyException;
 import org.apache.commons.collections.CollectionUtils;
@@ -27,10 +29,27 @@ import com.alibaba.dubbo.config.annotation.Service;
  * @version 2016年1月13日
  */
 @Service(version = "1.0")
-public class PaymentServiceImpl implements IPaymentService
+public class PaymentServiceImpl implements PaymentService
 {
     
     private static Logger logger = LoggerFactory.getLogger(PaymentServiceImpl.class);
+    
+    @SuppressWarnings("rawtypes")
+    @Override
+    public Pagination<Payment> listPayments(Map<String, Object> criteria, Pagination pagination)
+    {
+        logger.debug("list Payments by criteria[{}] and pagination [{}]", criteria, pagination);
+        if (null == criteria)
+        {
+            criteria = new HashMap<String, Object>();
+        }
+        if (null != pagination)
+        {
+            criteria.put(Keys.KEY_PAGINATION, pagination);
+        }
+        
+        return Payment.find(Payment.class, criteria, pagination);
+    }
     
     @Override
     public List<Payment> listPayments(Map<String, Object> criteria)
@@ -41,6 +60,22 @@ public class PaymentServiceImpl implements IPaymentService
             criteria = new HashMap<String, Object>();
         }
         return Payment.find(Payment.class, criteria);
+    }
+    
+    @Override
+    public Payment loadPayment(Map<String, Object> criteria)
+    {
+        logger.debug("load Payment by criteria[{}]", criteria);
+        if (null == criteria)
+        {
+            criteria = new HashMap<String, Object>();
+        }
+        List<Payment> payments = Payment.find(Payment.class, criteria);
+        if (!CollectionUtils.isEmpty(payments))
+        {
+            return payments.get(0);
+        }
+        return null;
     }
     
     @Override

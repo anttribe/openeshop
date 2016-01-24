@@ -35,6 +35,13 @@
 			<artifactId>openeshop-infra-common</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.anttribe.openeshop.openeshop-base</groupId>
+			<artifactId>openeshop-base-api</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.anttribe.openeshop.openeshop-product</groupId>
 			<artifactId>openeshop-product-api</artifactId>

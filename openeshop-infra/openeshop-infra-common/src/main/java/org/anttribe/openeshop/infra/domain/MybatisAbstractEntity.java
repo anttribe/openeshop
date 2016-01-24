@@ -167,8 +167,9 @@ public class MybatisAbstractEntity implements Entity
      * @param criteria 查询条件
      * @return Pagination<T>
      */
-    public static <T extends Entity> Pagination<T> find(Class<? extends Entity> entityClass, int currentPage,
-        int pagesize, Map<String, Object> criteria)
+    @SuppressWarnings({"rawtypes", "unchecked"})
+    public static <T extends Entity> Pagination<T> find(Class<? extends Entity> entityClass,
+        Map<String, Object> criteria, Pagination pagination)
     {
         String statement =
             (new StringBuilder()).append(entityClass.getCanonicalName()).append(".queryByPagination").toString();
@@ -177,12 +178,10 @@ public class MybatisAbstractEntity implements Entity
         {
             criteria = new HashMap<String, Object>();
         }
-        int totalCount = count(entityClass, criteria);
-        Pagination<T> pagination = new Pagination<T>(currentPage, pagesize, totalCount);
-        criteria.put("offset", pagination.getOffset());
-        criteria.put("limit", pagination.getPagesize());
         List<T> datas = getSqlSessionTemplate().selectList(statement, criteria);
+        int totalCount = count(entityClass, criteria);
         pagination.setDatas(datas);
+        pagination.setTotalRecords(totalCount);
         return pagination;
     }
     

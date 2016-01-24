@@ -8,5 +8,5 @@
 <link rel="stylesheet" type="text/css" href="${contextPath}/static/static/css/common.css" />
 
 <!-- The favicon icon -->
-<link rel="icon" href="${contextPathcontextPath}/static/static/img/favicon.ico" type="image/x-icon" />
-<link rel="shortcut icon" href="${contextPathcontextPath}/static/static/img/favicon.ico" type="image/x-icon" />
+<link rel="icon" href="${contextPath}/static/static/img/favicon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="${contextPath}/static/static/img/favicon.ico" type="image/x-icon" />

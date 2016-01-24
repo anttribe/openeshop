@@ -9,6 +9,7 @@ package org.anttribe.openeshop.shop.domain;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Date;
 
 import org.anttribe.openeshop.infra.domain.MybatisAbstractEntity;
 
@@ -109,7 +110,7 @@ public class Shop extends MybatisAbstractEntity implements Serializable
     /**
      * 创建时间
      */
-    private Timestamp createTime;
+    private Date createTime;
     
     /**
      * 更新时间
@@ -356,12 +357,12 @@ public class Shop extends MybatisAbstractEntity implements Serializable
         this.endBusinessTime = endBusinessTime;
     }
     
-    public Timestamp getCreateTime()
+    public Date getCreateTime()
     {
-        return this.createTime;
+        return createTime;
     }
     
-    public void setCreateTime(Timestamp createTime)
+    public void setCreateTime(Date createTime)
     {
         this.createTime = createTime;
     }
