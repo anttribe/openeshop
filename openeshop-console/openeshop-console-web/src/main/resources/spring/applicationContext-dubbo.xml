@@ -9,7 +9,6 @@
 	<dubbo:application name="openeshop-console" />
 	<!--zookeeper注册中心 -->
 	<dubbo:registry protocol="zookeeper" address="127.0.0.1:2181" />
-	<dubbo:protocol name="dubbo" port="20881" />
 	<dubbo:annotation package="org.anttribe.openeshop.console" />
 	<dubbo:consumer check="false" />
 </beans>

@@ -7,6 +7,7 @@
  */
 package org.anttribe.openeshop.infra.domain;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -15,8 +16,13 @@ import java.util.List;
  * @author zhaoyong
  * @version 2015年10月10日
  */
-public class Pagination<T>
+public class Pagination<T> implements Serializable
 {
+    /**
+     * serialVersionUID
+     */
+    private static final long serialVersionUID = -7053823401373975485L;
+
     /**
      * 默认分页大小
      */

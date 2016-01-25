@@ -16,8 +16,9 @@ import org.anttribe.openeshop.console.facade.PaymentFacade;
 import org.anttribe.openeshop.console.facade.assembler.PaymentAssembler;
 import org.anttribe.openeshop.console.facade.dto.PaymentDTO;
 import org.anttribe.openeshop.infra.domain.Pagination;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.alibaba.dubbo.config.annotation.Reference;
 
 /**
  * @author zhaoyong
@@ -27,7 +28,7 @@ import org.springframework.stereotype.Service;
 public class PaymentFacadeImpl implements PaymentFacade
 {
     
-    @Autowired
+    @Reference
     private PaymentService paymentService;
     
     @SuppressWarnings({"rawtypes", "unchecked"})

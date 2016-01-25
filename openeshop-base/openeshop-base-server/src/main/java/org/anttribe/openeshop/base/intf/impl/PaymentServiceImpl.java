@@ -28,7 +28,7 @@ import com.alibaba.dubbo.config.annotation.Service;
  * @author zhaoyong
  * @version 2016年1月13日
  */
-@Service(version = "1.0")
+@Service
 public class PaymentServiceImpl implements PaymentService
 {
     
