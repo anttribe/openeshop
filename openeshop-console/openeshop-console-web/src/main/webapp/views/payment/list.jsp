@@ -7,22 +7,59 @@
 <html lang="en_US">
     <head>
         <title><spring:message code="app.appname" /></title>
-        <link rel="stylesheet" type="text/css" href="${contextPath}/static/assets/jquery-treetable/css/jquery.treetable.css" >
-        <link rel="stylesheet" type="text/css" href="${contextPath}/static/static/css/jquery.treetable.theme.custom.css" >
-        <link rel="stylesheet" type="text/css" href="${contextPath}/static/assets/bootstrap3-dialog/css/bootstrap-dialog.min.css" >
+        <link rel="stylesheet" type="text/css" href="${contextPath}/static/assets/adminEx/js/data-tables/DT_bootstrap.css" >
     </head>
     <body>
         <!--body wrapper start-->
         <div class="wrapper">
             <div class="row">
                 <div class="col-sm-12">
-                支付方式
+                    <div class="clearfix">
+                        <div class="btn-group">
+                            <button class="btn btn-primary add"><i class="fa fa-plus"></i> 新增</button>
+                        </div>
+                    </div>
+                    <div class="adv-table clearfix">
+                        <table id="payments-table" class="display table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>名称</th>
+                                    <th>编码</th>
+                                    <th>是否可用</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
         <!--body wrapper end-->
         
-        <script type="text/javascript" src="${contextPath}/static/assets/jquery-treetable/js/jquery.treetable.js"></script>
-        <script type="text/javascript" src="${contextPath}/static/assets/bootstrap3-dialog/js/bootstrap-dialog.min.js"></script>
+        <script type="text/javascript" src="${contextPath}/static/assets/jquery-datatable/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="${contextPath}/static/assets/adminEx/js/data-tables/DT_bootstrap.js"></script>
+        <script type="text/javascript">
+            $(function(){
+    	        //新增
+    	        $('.add').click(function(){console.log('scsc');
+    		        location.href = contextPath + '/payment/add';
+    	        });
+    	
+    	        $('#payments-table').dataTable({
+    		        'bAutoWidth': true,
+				    'bStateSave': true,
+	        	    'aoColumnDefs': [
+	        	    ],
+        	        'bSort': false,
+				    'bFilter': false,
+    		        'oLanguage': {
+    		            'sUrl': contextPath + '/static/static/i18n/datatable_zh_CN.txt'
+    		        },
+    		        bRowDetail: true
+    	        });
+            });
+        </script>
     </body>
 </html>

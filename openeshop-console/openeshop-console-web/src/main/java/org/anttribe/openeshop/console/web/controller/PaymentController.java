@@ -69,21 +69,6 @@ public class PaymentController
         return "/payment/edit";
     }
     
-    @RequestMapping("/add/exec")
-    public Result<?> doAdd(HttpServletRequest request,
-        @RequestParam(required = false, value = "file") MultipartFile file, PaymentDTO paymentDTO)
-    {
-        Result<PaymentDTO> result = new Result<PaymentDTO>();
-        if (null != paymentDTO)
-        {
-            this.paymentFacade.saveOrUpdatePayment(paymentDTO);
-            
-            result.setData(paymentDTO);
-            result.setResultCode(Constants.DEFAULT_RESULT_SUCCESS);
-        }
-        return result;
-    }
-    
     @RequestMapping("/edit")
     public ModelAndView edit(HttpServletRequest request, ModelAndView mv, PaymentDTO paymentDTO)
     {
@@ -107,6 +92,7 @@ public class PaymentController
             this.paymentFacade.saveOrUpdatePayment(paymentDTO);
             
             // TODO:删除原图片
+            
             result.setData(paymentDTO);
             result.setResultCode(Constants.DEFAULT_RESULT_SUCCESS);
         }

@@ -15,6 +15,8 @@
 <link rel="stylesheet" type="text/css" href="${contextPath}/static/assets/adminEx/css/style.css" />
 <link rel="stylesheet" type="text/css" href="${contextPath}/static/assets/adminEx/css/style-responsive.css" />
 
+<link rel="stylesheet" type="text/css" href="${contextPath}/static/assets/bootstrap3-dialog/css/bootstrap-dialog.min.css" >
+
 <!-- The favicon icon -->
 <link rel="icon" href="${contextPath}/static/static/img/favicon.ico" type="image/x-icon" />
 <link rel="shortcut icon" href="${contextPath}/static/static/img/favicon.ico" type="image/x-icon" />
