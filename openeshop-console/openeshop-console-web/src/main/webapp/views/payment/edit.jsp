@@ -21,7 +21,7 @@
                             <span>新增支付方式</span>
                         </header>
                         <div class="panel-body">
-                            <form role="form" class="form-horizontal" method="POST" action="${contextPath}/payment/edit/exec">
+                            <form role="form" class="form-horizontal" enctype="multipart/form-data" method="POST" action="${contextPath}/payment/edit/exec">
                                 <input type="hidden" name="id" value="${PAGE_DATA.id}" />
                                 <div class="form-group">
                                     <label for="name" class="col-lg-2 col-sm-2 control-label">名称</label>

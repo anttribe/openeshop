@@ -21,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -63,6 +64,19 @@ public class PaymentController
         return mv;
     }
     
+    @RequestMapping("/list/exec")
+    @ResponseBody
+    public Result<Pagination<PaymentDTO>> list(HttpServletRequest request, PaymentDTO paymentDTO,
+        Pagination<PaymentDTO> pagination)
+    {
+        pagination = paymentFacade.listPayments(paymentDTO, pagination);
+        
+        Result<Pagination<PaymentDTO>> result = new Result<Pagination<PaymentDTO>>();
+        result.setData(pagination);
+        result.setResultCode(Constants.DEFAULT_RESULT_SUCCESS);
+        return result;
+    }
+    
     @RequestMapping("/add")
     public String add(HttpServletRequest request)
     {
@@ -83,11 +97,12 @@ public class PaymentController
     }
     
     @RequestMapping("/edit/exec")
+    @ResponseBody
     public Result<?> doEdit(HttpServletRequest request,
         @RequestParam(required = false, value = "file") MultipartFile file, PaymentDTO paymentDTO)
     {
         Result<PaymentDTO> result = new Result<PaymentDTO>();
-        if (null != paymentDTO && null != paymentDTO.getId())
+        if (null != paymentDTO)
         {
             this.paymentFacade.saveOrUpdatePayment(paymentDTO);
             

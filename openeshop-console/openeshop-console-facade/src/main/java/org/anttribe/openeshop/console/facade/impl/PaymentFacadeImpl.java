@@ -43,6 +43,11 @@ public class PaymentFacadeImpl implements PaymentFacade
             {
                 List<Payment> payments = tempPagination.getDatas();
                 pagination.setDatas(PaymentAssembler.toDTO(payments));
+                pagination.setCurrentPage(tempPagination.getCurrentPage());
+                pagination.setOffset(tempPagination.getOffset());
+                pagination.setPagesize(tempPagination.getPagesize());
+                pagination.setTotalPages(tempPagination.getTotalPages());
+                pagination.setTotalRecords(tempPagination.getTotalRecords());
             }
             return pagination;
         }

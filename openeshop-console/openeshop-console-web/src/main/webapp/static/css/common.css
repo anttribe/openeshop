@@ -1,3 +1,6 @@
 @charset "utf-8";
 html, body { height: 100%; }
 body { padding: 0; background: #FFFFFF; color: rgba(0,0,0,.75); font-size: 13px; font-family: '微软雅黑','Helvetica Neue',sans-serif,SimHei; }
+
+/* img */
+img.thumbnail { max-width: 46px; max-height: 46px;; }
