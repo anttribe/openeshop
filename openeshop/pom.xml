@@ -338,6 +338,11 @@
 				<artifactId>openeshop-shop-service</artifactId>
 				<version>${project.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>org.anttribe.openeshop.openeshop-product</groupId>
+				<artifactId>openeshop-product-service</artifactId>
+				<version>${project.version}</version>
+			</dependency>
 
 			<dependency>
 				<groupId>javax.servlet</groupId>

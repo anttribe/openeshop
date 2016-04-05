@@ -12,10 +12,13 @@ import org.anttribe.openeshop.shop.domain.ShopAccount;
 import org.anttribe.openeshop.shop.service.IShopAccountService;
 import org.anttribe.vigor.infra.common.service.AbstractServiceImpl;
 
+import com.alibaba.dubbo.config.annotation.Service;
+
 /**
  * @author zhaoyong
  * @version 2016年4月5日
  */
+@Service
 public class ShopAccountServiceImpl extends AbstractServiceImpl<IShopAccountDao, ShopAccount>
     implements IShopAccountService
 {

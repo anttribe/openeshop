@@ -11,10 +11,16 @@
 	<groupId>org.anttribe.openeshop.openeshop-product</groupId>
 	<artifactId>openeshop-product</artifactId>
 	<name>openeshop-product</name>
+	<packaging>pom</packaging>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
+
+	<modules>
+		<module>openeshop-product-service</module>
+		<module>openeshop-product-server</module>
+	</modules>
 
 	<dependencies>
 	</dependencies>

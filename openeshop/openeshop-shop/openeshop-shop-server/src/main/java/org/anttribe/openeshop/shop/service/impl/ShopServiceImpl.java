@@ -12,10 +12,13 @@ import org.anttribe.openeshop.shop.domain.Shop;
 import org.anttribe.openeshop.shop.service.IShopService;
 import org.anttribe.vigor.infra.common.service.AbstractServiceImpl;
 
+import com.alibaba.dubbo.config.annotation.Service;
+
 /**
  * @author zhaoyong
  * @version 2016年4月5日
  */
+@Service
 public class ShopServiceImpl extends AbstractServiceImpl<IShopDao, Shop> implements IShopService
 {
 }
