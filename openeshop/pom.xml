@@ -333,6 +333,11 @@
 				<artifactId>openeshop-base-service</artifactId>
 				<version>${project.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>org.anttribe.openeshop.openeshop-shop</groupId>
+				<artifactId>openeshop-shop-service</artifactId>
+				<version>${project.version}</version>
+			</dependency>
 
 			<dependency>
 				<groupId>javax.servlet</groupId>

@@ -17,6 +17,11 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
+	<modules>
+		<module>openeshop-shop-service</module>
+		<module>openeshop-shop-server</module>
+	</modules>
+
 	<dependencies>
 	</dependencies>
 </project>

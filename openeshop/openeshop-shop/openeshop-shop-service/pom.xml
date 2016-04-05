@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.anttribe.openeshop.openeshop-shop</groupId>
+		<artifactId>openeshop-shop</artifactId>
+		<version>${project.version}</version>
+	</parent>
+	<artifactId>openeshop-shop-service</artifactId>
+	<name>openeshop-shop-service</name>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.anttribe.vigor.vigor-infra</groupId>
+			<artifactId>vigor-infra-common</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.anttribe.vigor.vigor-infra</groupId>
+			<artifactId>vigor-infra-persist</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.anttribe.openeshop.openeshop-base</groupId>
+			<artifactId>openeshop-base-service</artifactId>
+		</dependency>
+	</dependencies>
+</project>
