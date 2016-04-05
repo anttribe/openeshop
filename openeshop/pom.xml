@@ -28,6 +28,8 @@
 		<sitemeth.version>3.0.0</sitemeth.version>
 		<jstl.version>1.2</jstl.version>
 		<junit.version>4.11</junit.version>
+
+		<vigor.version>0.0.1-SNAPSHOT</vigor.version>
 	</properties>
 
 	<build>
@@ -209,6 +211,32 @@
 				<groupId>com.alibaba</groupId>
 				<artifactId>dubbo</artifactId>
 				<version>${dubbo.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring</artifactId>
+					</exclusion>
+					<exclusion>
+						<artifactId>spring-aop</artifactId>
+						<groupId>org.springframework</groupId>
+					</exclusion>
+					<exclusion>
+						<artifactId>spring-beans</artifactId>
+						<groupId>org.springframework</groupId>
+					</exclusion>
+					<exclusion>
+						<artifactId>spring-context</artifactId>
+						<groupId>org.springframework</groupId>
+					</exclusion>
+					<exclusion>
+						<artifactId>spring-core</artifactId>
+						<groupId>org.springframework</groupId>
+					</exclusion>
+					<exclusion>
+						<artifactId>spring-expression</artifactId>
+						<groupId>org.springframework</groupId>
+					</exclusion>
+				</exclusions>
 			</dependency>
 
 			<!-- zookeeper -->
@@ -270,32 +298,39 @@
 			<dependency>
 				<groupId>org.anttribe.vigor.vigor-infra</groupId>
 				<artifactId>vigor-infra-common</artifactId>
-				<version>${project.version}</version>
+				<version>${vigor.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.anttribe.vigor.vigor-infra</groupId>
 				<artifactId>vigor-infra-persist</artifactId>
-				<version>${project.version}</version>
+				<version>${vigor.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.anttribe.vigor.vigor-infra</groupId>
 				<artifactId>vigor-infra-dict</artifactId>
-				<version>${project.version}</version>
+				<version>${vigor.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.anttribe.vigor.vigor-infra</groupId>
 				<artifactId>vigor-infra-security</artifactId>
-				<version>${project.version}</version>
+				<version>${vigor.version}</version>
 			</dependency>
 
 			<dependency>
 				<groupId>org.anttribe.vigor.vigor-defensor</groupId>
 				<artifactId>vigor-defensor-service</artifactId>
-				<version>${project.version}</version>
+				<version>${vigor.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.anttribe.vigor.vigor-defensor</groupId>
 				<artifactId>vigor-defensor-auth</artifactId>
+				<version>${vigor.version}</version>
+			</dependency>
+
+			<!-- openeshop services -->
+			<dependency>
+				<groupId>oeg.anttribe.openeshop.openeshop-base</groupId>
+				<artifactId>openeshop-base-service</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 

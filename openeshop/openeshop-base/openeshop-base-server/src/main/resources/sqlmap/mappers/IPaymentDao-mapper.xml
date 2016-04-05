@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.anttribe.openeshop.base.dao.IPaymentDao">
+	<cache readOnly="true" />
+	<resultMap id="Payment-resultMap" type="org.anttribe.openeshop.base.domain.Payment">
+		<id property="id" column="id" />
+		<result property="name" column="name" />
+		<result property="code" column="code" />
+		<result property="icon" column="icon" />
+		<result property="config" column="config" />
+		<result property="enabled" column="enabled" />
+	</resultMap>
+
+	<!-- select -->
+	<sql id="select">
+        <![CDATA[
+            SELECT t.id, t.name, t.code, t.icon, t.config, t.enabled
+              FROM t_payment_info t
+        ]]>
+	</sql>
+
+	<!-- where -->
+	<sql id="where">
+		<where>
+			<if test="null != id and id != ''">
+				AND t.id = #{id}
+			</if>
+			<if test="null != name and name != ''">
+				AND t.name LIKE CONCAT('%', #{name}, '%')
+			</if>
+			<if test="null != code and code != ''">
+				AND t.code = #{code}
+			</if>
+			<if test="null != enabled and enabled != ''">
+				AND t.enabled = #{enabled}
+			</if>
+		</where>
+	</sql>
+
+	<!-- where-no-alias -->
+	<sql id="where-no-alias">
+		<where>
+			<if test="null != id and id != ''">
+				AND id = #{id}
+			</if>
+			<if test="null != name and name != ''">
+				AND name LIKE CONCAT('%', #{name}, '%')
+			</if>
+			<if test="null != code and null != code">
+				AND code = #{code}
+			</if>
+			<if test="null != enabled and enabled != ''">
+				AND enabled = #{enabled}
+			</if>
+		</where>
+	</sql>
+
+	<!-- order-by -->
+	<sql id="order-by">
+	    <![CDATA[ ORDER BY t.id ]]>
+	</sql>
+
+	<!-- limit -->
+	<sql id="limit">
+		<if test="null != pagination">
+			LIMIT #{pagination.offset}, #{pagination.pagesize}
+		</if>
+	</sql>
+
+	<!-- insert: 插入单条数据 -->
+	<insert id="insert" parameterType="org.anttribe.openeshop.base.domain.Payment">
+		<selectKey keyProperty="id" resultType="Long" order="AFTER">
+		    <![CDATA[ SELECT LAST_INSERT_ID() ]]>
+		</selectKey>
+		<![CDATA[
+		    INSERT INTO t_payment_info(name, code, icon, config, enabled)
+		        VALUES(#{name}, #{code}, #{icon}, #{config}, #{enabled})
+		]]>
+	</insert>
+
+	<!-- batchInsert: 批量插入数据 -->
+	<insert id="batchInsert" parameterType="java.util.List">
+		<![CDATA[
+		    INSERT INTO t_payment_info(name, code, icon, config, enabled)
+		        VALUES
+		]]>
+		<foreach collection="list" item="item" separator=", ">
+			<![CDATA[ (#{item.ame}, #{item.code}, #{item.icon}, #{item.config}, #{item.enabled}) ]]>
+		</foreach>
+	</insert>
+
+	<!-- update: 更新单条数据 -->
+	<update id="update" parameterType="org.anttribe.openeshop.base.domain.Payment">
+        <![CDATA[
+            UPDATE t_payment_info t
+        ]]>
+		<set>
+			<if test="null != name and name != ''">
+				t.name = #{name},
+			</if>
+			<if test="null != code and code != ''">
+				t.code = #{code},
+			</if>
+			t.icon = #{icon},
+			t.config = #{config},
+			<if test="null != enabled and enabled != ''">
+				t.enabled = #{enabled},
+			</if>
+		</set>
+		<![CDATA[
+		    WHERE t.id = #{id}
+		]]>
+	</update>
+
+	<!-- batchUpdate: 批量更新数据 -->
+	<update id="batchUpdate" parameterType="java.util.List">
+		<![CDATA[
+        ]]>
+	</update>
+
+	<!-- delete: 删除单条数据 -->
+	<delete id="delete" parameterType="Map">
+	    <![CDATA[
+            DELETE FROM t_payment_info
+        ]]>
+		<include refid="where-no-alias"></include>
+	</delete>
+
+	<!-- findAll: 查询所有数据 -->
+	<select id="findAll" resultMap="Payment-resultMap">
+		<include refid="select"></include>
+		<include refid="order-by"></include>
+	</select>
+
+	<!-- findById: 根据id查询单条数据 -->
+	<select id="findById" resultMap="Payment-resultMap">
+		<include refid="select"></include>
+		<include refid="where"></include>
+	</select>
+
+	<!-- find: 根据条件查询数据 -->
+	<select id="find" resultMap="Payment-resultMap" parameterType="Map">
+		<include refid="select"></include>
+		<include refid="where"></include>
+		<include refid="order-by"></include>
+		<include refid="limit"></include>
+	</select>
+
+	<!-- count: 根据条件查询数据条数 -->
+	<select id="count" resultType="int" parameterType="Map">
+		<![CDATA[
+            SELECT COUNT(1)
+              FROM t_payment_info t
+        ]]>
+		<include refid="where"></include>
+	</select>
+
+</mapper>
