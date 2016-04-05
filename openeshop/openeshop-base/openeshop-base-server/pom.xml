@@ -4,7 +4,7 @@
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>oeg.anttribe.openeshop.openeshop-base</groupId>
+		<groupId>org.anttribe.openeshop.openeshop-base</groupId>
 		<artifactId>openeshop-base</artifactId>
 		<version>${project.version}</version>
 	</parent>
@@ -67,7 +67,7 @@
 		</dependency>
 
 		<dependency>
-			<groupId>oeg.anttribe.openeshop.openeshop-base</groupId>
+			<groupId>org.anttribe.openeshop.openeshop-base</groupId>
 			<artifactId>openeshop-base-service</artifactId>
 		</dependency>
 	</dependencies>

@@ -4,11 +4,11 @@
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>oeg.anttribe.openeshop</groupId>
+		<groupId>org.anttribe.openeshop</groupId>
 		<artifactId>openeshop</artifactId>
 		<version>${project.version}</version>
 	</parent>
-	<groupId>oeg.anttribe.openeshop.openeshop-order</groupId>
+	<groupId>org.anttribe.openeshop.openeshop-order</groupId>
 	<artifactId>openeshop-order</artifactId>
 	<name>openeshop-order</name>
 
