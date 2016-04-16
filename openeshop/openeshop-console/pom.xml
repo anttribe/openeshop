@@ -11,10 +11,15 @@
 	<groupId>org.anttribe.openeshop.openeshop-console</groupId>
 	<artifactId>openeshop-console</artifactId>
 	<name>openeshop-console</name>
+	<packaging>pom</packaging>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
+
+	<modules>
+		<module>openeshop-console-web</module>
+	</modules>
 
 	<dependencies>
 	</dependencies>

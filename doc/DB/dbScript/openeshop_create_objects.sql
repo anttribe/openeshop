@@ -1,7 +1,7 @@
 /*==============================================================*/
 /* Database name:  openeshop                                    */
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2016/1/7 22:27:34                            */
+/* Created on:     2016/4/15 11:21:39                           */
 /*==============================================================*/
 
 
@@ -51,7 +51,7 @@ alter table t_payment_info comment '系统支付信息配置表';
 /*==============================================================*/
 create table t_product_appraise_file_rec
 (
-   id                   bigint not null comment 'id',
+   id                   bigint not null auto_increment comment 'id',
    appraise_id          bigint not null comment '评价',
    file                 varchar(128) comment '文件',
    primary key (id)
@@ -66,12 +66,12 @@ create table t_product_appraise_rec
 (
    id                   bigint not null auto_increment comment 'id编号',
    appraiser            varchar(32) not null comment '评价人',
-   product_id           bigint not null comment '商品',
+   product              varchar(32) not null comment '商品',
    order_id             varchar(32) comment '订单',
    grade                varchar(8) comment '评分',
    comment              varchar(256) comment '评论',
    appraise_time        timestamp comment '评价时间',
-   appraise_id          varchar(32) comment '评价的评价',
+   appraise_id          bigint comment '评价的评价',
    primary key (id)
 );
 
@@ -82,13 +82,32 @@ alter table t_product_appraise_rec comment '商品评价记录表';
 /*==============================================================*/
 create table t_product_category_associ_rec
 (
-   id                   bigint not null comment 'id编号',
+   id                   bigint not null auto_increment comment 'id编号',
    category_id          bigint not null comment '分类id',
    product_id           bigint not null comment '商品id',
    primary key (id)
 );
 
 alter table t_product_category_associ_rec comment '商品和分类关联关系表';
+
+/*==============================================================*/
+/* Table: t_product_category_info                               */
+/*==============================================================*/
+create table t_product_category_info
+(
+   id                   bigint not null auto_increment comment '编号id',
+   name                 varchar(64) not null comment '分类名称',
+   picture              varchar(128) comment '分类图标',
+   parent_id            bigint comment '父分类',
+   sort_no              varchar(8) comment '序号',
+   is_show              varchar(8) comment '是否显示',
+   tree_code            varchar(64) comment '树节点编号',
+   create_time          datetime comment '创建时间',
+   update_time          timestamp comment '更新时间',
+   primary key (id)
+);
+
+alter table t_product_category_info comment '商品分类信息表';
 
 /*==============================================================*/
 /* Table: t_product_order_operate_rec                           */
@@ -167,7 +186,7 @@ create table t_product_picture_info
    id                   bigint not null auto_increment comment 'id',
    product_id           varchar(32) not null comment '商品spu或sku',
    picture              varchar(128) comment '图片文件id',
-   ordinal              varchar(8) comment '排序',
+   sort_no              varchar(8) comment '排序',
    type                 varchar(16) comment '图片类型, PRODUCTSPU或PRODUCTSKU',
    primary key (id)
 );
@@ -183,8 +202,8 @@ create table t_product_sku_info
    product_spu          bigint not null comment '商品spu',
    model                varchar(64) comment '型号',
    price                double comment '价格',
-   stock                bigint comment '库存',
-   sales_num            bigint comment '销售量',
+   stock                int comment '库存',
+   sales_num            int comment '销售量',
    product_code         varchar(32) comment '商品编码',
    create_time          datetime comment '创建时间',
    update_time          timestamp comment '更新时间',
@@ -200,10 +219,11 @@ create table t_product_spu_info
 (
    id                   bigint not null auto_increment comment 'id',
    name                 varchar(128) not null comment '商品名称',
+   category             bigint comment '商品分类',
    description          longtext comment '商品描述',
    desc_html_file       varchar(128) comment '描述文件',
    price                double comment '价格',
-   stock                bigint comment '库存',
+   stock                int comment '库存',
    product_code         varchar(32) comment '商品编码',
    status               varchar(16) comment '商品状态',
    shop_id              bigint not null comment '所属店铺',
@@ -215,29 +235,26 @@ create table t_product_spu_info
 alter table t_product_spu_info comment '店铺商品Spu信息';
 
 /*==============================================================*/
-/* Table: t_shop_category_info                                  */
+/* Table: t_shop_account_rec                                    */
 /*==============================================================*/
-create table t_shop_category_info
+create table t_shop_account_rec
 (
-   id                   bigint not null auto_increment comment '编号id',
-   name                 varchar(64) not null comment '分类名称',
-   picture              varchar(128) comment '分类图标',
-   parent_id            bigint comment '父分类',
-   sort_no              varchar(8) comment '序号',
-   tree_code            varchar(64) comment '树节点编号',
+   id                   bigint not null comment 'id编号',
+   type                 varchar(16) not null comment '帐号类型：店主、子账号',
+   account_user         bigint not null comment '店铺帐号用户',
+   shop                 bigint not null comment '所属店铺',
    create_time          datetime comment '创建时间',
-   update_time          timestamp comment '更新时间',
    primary key (id)
 );
 
-alter table t_shop_category_info comment '商品分类信息表';
+alter table t_shop_account_rec comment '店铺帐号信息';
 
 /*==============================================================*/
 /* Table: t_shop_distribution_info                              */
 /*==============================================================*/
 create table t_shop_distribution_info
 (
-   id                   bigint not null comment 'id编号',
+   id                   bigint not null auto_increment comment 'id编号',
    distribution_id      bigint not null comment '配送方式',
    config               longtext comment '配置信息',
    enabled              varchar(8) comment '是否启用',
@@ -264,10 +281,9 @@ create table t_shop_info
    longitude            varchar(16) comment '位置经度',
    location             varchar(64) comment '位置其他信息',
    merchant             varchar(32) not null comment '店铺拥有者',
-   status               varchar(16) comment '店铺状态',
+   status               varchar(32) comment '店铺状态',
    type                 varchar(32) comment '店铺类型',
-   start_business_time  varchar(32) comment '开始营业时间',
-   end_business_time    varchar(32) comment '结束营业时间',
+   business_time        varchar(64) comment '营业时间',
    create_time          datetime comment '创建时间',
    update_time          timestamp comment '更新时间',
    primary key (id)
@@ -280,7 +296,7 @@ alter table t_shop_info comment '店铺信息表';
 /*==============================================================*/
 create table t_shop_payment_info
 (
-   id                   bigint not null comment 'id',
+   id                   bigint not null auto_increment comment 'id',
    payment_id           bigint not null comment '支付方式',
    config               longtext comment '配置信息',
    enabled              varchar(8) comment '是否启用',
@@ -297,8 +313,9 @@ create table t_shop_product_category_info
 (
    id                   bigint not null auto_increment comment 'id',
    name                 varchar(128) not null comment '分类名称',
-   ordinal              varchar(8) comment '排序',
+   sort_no              varchar(8) comment '排序',
    update_time          timestamp comment '更新时间',
+   shop_id              bigint not null comment '所属店铺',
    primary key (id)
 );
 
@@ -306,9 +323,6 @@ alter table t_shop_product_category_info comment '店铺商品分类信息';
 
 alter table t_product_appraise_file_rec add constraint FK_Reference_8 foreign key (appraise_id)
       references t_product_appraise_rec (id) on delete restrict on update restrict;
-
-alter table t_product_appraise_rec add constraint FK_Reference_9 foreign key (product_id)
-      references t_product_spu_info (id) on delete restrict on update restrict;
 
 alter table t_product_category_associ_rec add constraint FK_Reference_12 foreign key (category_id)
       references t_shop_product_category_info (id) on delete restrict on update restrict;
@@ -328,6 +342,9 @@ alter table t_product_sku_info add constraint FK_PRODUCT_SKU_SPU foreign key (pr
 alter table t_product_spu_info add constraint FK_PRODUCT_SPU foreign key (shop_id)
       references t_shop_info (id) on delete restrict on update restrict;
 
+alter table t_shop_account_rec add constraint FK_Reference_17 foreign key (shop)
+      references t_shop_info (id) on delete restrict on update restrict;
+
 alter table t_shop_distribution_info add constraint FK_Reference_15 foreign key (shop_id)
       references t_shop_info (id) on delete restrict on update restrict;
 
@@ -339,4 +356,7 @@ alter table t_shop_payment_info add constraint FK_Reference_14 foreign key (shop
 
 alter table t_shop_payment_info add constraint FK_Reference_4 foreign key (payment_id)
       references t_payment_info (id) on delete restrict on update restrict;
+
+alter table t_shop_product_category_info add constraint FK_Reference_16 foreign key (shop_id)
+      references t_shop_info (id) on delete restrict on update restrict;
 

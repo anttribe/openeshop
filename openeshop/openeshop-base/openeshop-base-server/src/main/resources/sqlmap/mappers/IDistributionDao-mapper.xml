@@ -86,7 +86,7 @@
 		        VALUES
 		]]>
 		<foreach collection="list" item="item" separator=", ">
-			<![CDATA[ (#{item.ame}, #{item.code}, #{item.icon}, #{item.config}, #{item.enabled}) ]]>
+			<![CDATA[ (#{item.name}, #{item.code}, #{item.icon}, #{item.config}, #{item.enabled}) ]]>
 		</foreach>
 	</insert>
 

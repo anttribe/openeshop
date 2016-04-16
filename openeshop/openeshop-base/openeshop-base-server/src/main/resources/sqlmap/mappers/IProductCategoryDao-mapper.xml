@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.anttribe.openeshop.base.dao.IProductCategoryDao">
+	<cache readOnly="true" />
+	<resultMap id="ProductCategory-resultMap"
+		type="org.anttribe.openeshop.base.domain.ProductCategory">
+		<id property="id" column="id" />
+		<result property="name" column="name" />
+		<result property="picture" column="picture" />
+		<result property="isShow" column="is_show" />
+		<result property="sortNo" column="sort_no" />
+		<result property="treeCode" column="tree_code" />
+		<result property="createTime" column="create_time" />
+		<result property="updateTime" column="update_time" />
+		<association property="parent"
+			javaType="org.anttribe.openeshop.base.domain.ProductCategory">
+			<id property="id" column="parent_id" />
+			<result property="name" column="parent_name" />
+		</association>
+		<collection property="children" column="{parent.id=id}"
+			javaType="java.util.ArrayList" ofType="org.anttribe.openeshop.base.domain.ProductCategory"
+			select="org.anttribe.openeshop.base.dao.IProductCategoryDao.find" />
+	</resultMap>
+
+	<!-- select -->
+	<sql id="select">
+        <![CDATA[
+            SELECT t.id, t.name, t.picture, t.is_show, t.sort_no, t.tree_code, t.create_time, t.update_time, t.parent_id, t1.name AS parent_name
+              FROM t_product_category_info t
+              LEFT JOIN t_product_category_info t1 ON t1.id = t.parent_id
+        ]]>
+	</sql>
+
+	<!-- where -->
+	<sql id="where">
+		<where>
+			<if test="null != id and id != ''">
+				AND t.id = #{id}
+			</if>
+			<if test="null != name and name != ''">
+				AND t.name LIKE CONCAT('%', #{name}, '%')
+			</if>
+			<if test="null != idShow and idShow != ''">
+				AND t.is_show = #{idShow}
+			</if>
+			<if test="null == id and (null == parent or null == parent.id or '' == parent.id)">
+				AND t.parent_id IS NULL
+			</if>
+			<if test="null != parent and null != parent.id and parent.id != ''">
+				AND t.parent_id = #{parent.id}
+			</if>
+		</where>
+	</sql>
+
+	<!-- where-no-alias -->
+	<sql id="where-no-alias">
+		<where>
+			<if test="null != id and id != ''">
+				AND id = #{id}
+			</if>
+			<if test="null != name and name != ''">
+				AND name LIKE CONCAT('%', #{name}, '%')
+			</if>
+			<if test="null != idShow and idShow != ''">
+				AND is_show = #{idShow}
+			</if>
+			<if test="null != parent and null != parent.id and parent.id != ''">
+				AND parent_id = #{parent.id}
+			</if>
+		</where>
+	</sql>
+
+	<!-- order-by -->
+	<sql id="order-by">
+	    <![CDATA[ ORDER BY t.update_time DESC, t.create_time DESC ]]>
+	</sql>
+
+	<!-- limit -->
+	<sql id="limit">
+		<if test="null != pagination">
+			LIMIT #{pagination.offset}, #{pagination.pagesize}
+		</if>
+	</sql>
+
+	<!-- insert: 插入单条数据 -->
+	<insert id="insert" parameterType="org.anttribe.openeshop.base.domain.ProductCategory">
+		<selectKey keyProperty="id" resultType="Long" order="AFTER">
+		    <![CDATA[ SELECT LAST_INSERT_ID() ]]>
+		</selectKey>
+		<![CDATA[
+		    INSERT INTO t_product_category_info(name, picture, is_show, sort_no, tree_code, create_time, update_time, parent_id)
+		        VALUES(#{name}, #{picture}, #{isShow}, #{sortNo}, #{treeCode}, #{createTime}, #{updateTime}, #{parent.id})
+		]]>
+	</insert>
+
+	<!-- batchInsert: 批量插入数据 -->
+	<insert id="batchInsert" parameterType="java.util.List">
+		<![CDATA[
+		    INSERT INTO t_product_category_info(name, picture, is_show, sort_no, tree_code, create_time, update_time, parent_id)
+		        VALUES
+		]]>
+		<foreach collection="list" item="item" separator=", ">
+			<![CDATA[ (#{item.name}, #{item.picture}, #{item.isShow}, #{item.sortNo}, #{item.treeCode}, #{item.createTime}, #{item.updateTime}, #{item.parent.id}) ]]>
+		</foreach>
+	</insert>
+
+	<!-- update: 更新单条数据 -->
+	<update id="update" parameterType="org.anttribe.openeshop.base.domain.ProductCategory">
+        <![CDATA[
+            UPDATE t_product_category_info t
+        ]]>
+		<set>
+			<if test="null != name and name != ''">
+				t.name = #{name},
+			</if>
+			t.picture = #{picture},
+			t.is_show = #{isShow},
+			t.sort_no = #{sortNo},
+			t.tree_code = #{treeCode},
+			t.update_time = #{updateTime},
+			t.parent_id = #{parent.id}
+		</set>
+		<![CDATA[
+		    WHERE t.id = #{id}
+		]]>
+	</update>
+
+	<!-- batchUpdate: 批量更新数据 -->
+	<update id="batchUpdate" parameterType="java.util.List">
+		<![CDATA[
+        ]]>
+	</update>
+
+	<!-- delete: 删除单条数据 -->
+	<delete id="delete" parameterType="Map">
+	    <![CDATA[
+            DELETE FROM t_product_category_info
+        ]]>
+		<include refid="where-no-alias"></include>
+	</delete>
+
+	<!-- findAll: 查询所有数据 -->
+	<select id="findAll" resultMap="ProductCategory-resultMap">
+		<include refid="select"></include>
+		<include refid="order-by"></include>
+	</select>
+
+	<!-- findById: 根据id查询单条数据 -->
+	<select id="findById" resultMap="ProductCategory-resultMap">
+		<include refid="select"></include>
+		<include refid="where"></include>
+	</select>
+
+	<!-- find: 根据条件查询数据 -->
+	<select id="find" resultMap="ProductCategory-resultMap"
+		parameterType="Map">
+		<include refid="select"></include>
+		<include refid="where"></include>
+		<include refid="order-by"></include>
+		<include refid="limit"></include>
+	</select>
+
+	<!-- count: 根据条件查询数据条数 -->
+	<select id="count" resultType="int" parameterType="Map">
+		<![CDATA[
+            SELECT COUNT(1)
+              FROM t_product_category_info t
+        ]]>
+		<include refid="where"></include>
+	</select>
+
+</mapper>
