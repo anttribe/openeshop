@@ -11,10 +11,16 @@
 	<groupId>org.anttribe.openeshop.openeshop-merchant</groupId>
 	<artifactId>openeshop-merchant</artifactId>
 	<name>openeshop-merchant</name>
+	<packaging>pom</packaging>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
+
+	<modules>
+		<module>openeshop-merchant-web</module>
+	</modules>
+
 	<dependencies>
 	</dependencies>
 </project>
